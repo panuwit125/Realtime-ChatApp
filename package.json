@@ -1,0 +1,26 @@
+{
+  "name": "realtime-chatapp",
+  "version": "1.0.0",
+  "description": "Realtime Application by nodejs and socket.io.\r Socket.io is Api for respone and request.",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/panuwit125/Realtime-ChatApp.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/panuwit125/Realtime-ChatApp/issues"
+  },
+  "homepage": "https://github.com/panuwit125/Realtime-ChatApp#readme",
+  "dependencies": {
+    "ejs": "^3.1.3",
+    "express": "^4.17.1",
+    "nodemon": "^2.0.4",
+    "socket.io": "^2.3.0"
+  }
+}
