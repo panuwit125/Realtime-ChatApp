@@ -37,4 +37,10 @@
       info.textContent = data.username + " is typing..."
       setTimeout(()=>{ info.textContent = ''},5000)
   })
+  
+  /*let curTime = document.querySelector(".date-cur");
+  socket.on('clock',data=>{
+    console.log('clock',data)
+    curTime.textContent = data.currentDate
+  })*/
 })();
