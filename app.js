@@ -2,18 +2,19 @@ const express = require('express');
 const socketio = require('socket.io');
 const app = express();
 
+
 app.set('view engine','ejs');
 app.use(express.static('public'));
 
 app.get('/',(req,res)=> {
-    res.render('index');
-})
-
-app.get('/home',(req,res)=>{
     res.render('home');
 })
 
-const server = app.listen(process.env.PORT || 3000,()=>{
+app.get('/home',(req,res)=>{
+    res.render('index');
+})
+
+const server = app.listen(process.env.PORT || 5000,()=>{
     console.log('server is running...');
 })
 
@@ -28,24 +29,14 @@ io.on('connection',(socket)=>{
         console.log('user disconnected')
     })
 
-    socket.on('change_username',data => {
-        console.log('chang',data)
-        socket.username = data.username
-    })
+    socket.on('forceDisconnect', function(){
+        console.log('forceDisconnect')
+        socket.disconnect();
+    });
 
-    // handle the new message event
-    socket.on('new_message', data => {
-        console.log('new message',data);
-        io.sockets.emit('receive_message', {message: data.message, username: socket.username})
+    socket.on('open_thermascan',data => {
+        console.log('open_thermascan',data)
+        //socket.broadcast.emit('typing',{ username: socket.username })
+        io.sockets.emit(data.card_reader, data.cid)
     })
-
-    socket.on('typing',data => {
-        console.log('typing',data)
-        socket.broadcast.emit('typing',{ username: socket.username })
-    })
-
-    /*setInterval(function(){
-        var currentDate = new Date();
-        io.sockets.emit('clock',{currentDate:currentDate})
-    },[10000])*/
 })
